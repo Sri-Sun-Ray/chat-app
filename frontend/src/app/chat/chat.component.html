@@ -1,0 +1,25 @@
+<div class="chat-container">
+    <div class="sidebar">
+        <div *ngFor="let user of users" (click)="selectUser(user)" [class.active]="user.id===selectedUser.id">
+            <p>{{user.username}}</p>
+            
+        </div>
+    </div>
+
+    <div class="chat-box" *ngIf="selectedUser">
+        <div class="chat-header">
+            <h3>{{selectedUser.username}}</h3>
+        </div>
+
+        <div class="messages" #messageBox>
+            <div *ngFor="let msg of messages" [class.me]="msg.from===myId">
+                <span>{{msg.content}}</span>
+            </div>
+        </div>
+
+        <div class="message-input">
+            <input [(ngModel)]="messageContent" (keyup.enter)="sendMessage()" placeholder="Type a message" />
+            <button (click)="sendMessage()">Send</button>
+        </div>
+    </div>
+</div>

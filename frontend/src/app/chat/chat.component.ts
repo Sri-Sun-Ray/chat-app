@@ -1,18 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../services/chat';
 import { SocketService } from '../services/socket';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
+  standalone:true,
   selector: 'app-chat',
-  imports: [],
+  imports: [CommonModule,FormsModule],
   templateUrl: './chat.html',
-  styleUrl: './chat.scss'
+  styleUrls: ['./chat.scss'],
+  
 })
 export class ChatComponent implements OnInit {
 
   users: any[]=[];
   selectedUser:any=null;
   messages:any[]=[];
+  messageContent: string='';
+  myId: string='';
   newMessage=''
 
   constructor(
