@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ChatComponent } from './chat/chat.component'; // only if not standalone
@@ -17,13 +18,14 @@ const config: SocketIoConfig = {
 };
 
 @NgModule({
-  declarations: [AppComponent],
   imports: [
     BrowserModule,
     FormsModule,
     SocketIoModule.forRoot(config),
-    ChatComponent // ✅ if it's standalone
+    ChatComponent,
+    AppComponent,
+     HttpClientModule // ✅ if it's standalone
   ],
-  bootstrap: [AppComponent]
+  
 })
 export class AppModule {}

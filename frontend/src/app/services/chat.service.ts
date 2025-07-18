@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ChatService {
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient){console.log('ChatService loaded');}
 
   getUsers(){
     return this.http.get(`${environment.apiUrl}/users`);

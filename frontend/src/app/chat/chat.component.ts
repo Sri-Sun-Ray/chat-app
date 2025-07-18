@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChatService } from '../services/chat';
+import { ChatService } from '../services/chat.service';
 import { SocketService } from '../services/socket';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
   standalone:true,
   selector: 'app-chat',
   imports: [CommonModule,FormsModule],
-  templateUrl: './chat.html',
+  templateUrl: './chat.component.html',
   styleUrls: ['./chat.scss'],
   
 })
