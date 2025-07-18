@@ -1,25 +1,23 @@
+<!-- src/app/chat/chat.component.html -->
 <div class="chat-container">
-    <div class="sidebar">
-        <div *ngFor="let user for users" (click)="selectUser(user)" [class.active]="user.id===SelectedUser?.id">
-            <p>{{user.username}}</p>
-            <span *ngIf="user.isOnline" class="online-dot"></span>
-        </div>
+  <div class="user-list">
+    <div *ngFor="let user of users" (click)="selectUser(user)" [class.active]="user._id === selectedUser?._id">
+      {{ user.name }}
+    </div>
+  </div>
+
+  <div class="chat-window" *ngIf="selectedUser">
+    <div class="chat-header">{{ selectedUser.name }}</div>
+
+    <div class="chat-messages">
+      <div *ngFor="let msg of messages" [class.self]="msg.fromSelf" class="message">
+        {{ msg.content }}
+      </div>
     </div>
 
-    <div class="chat-box" *ngIf="selectedUser">
-        <div class="chat-header">
-            <h3>{{selectedUser.username}}</h3>
-        </div>
-
-        <div class="messages" #messageBox>
-            <div *ngFor="let msg of messages" [class.me]="msg.from===myId">
-                <span>{{msg.content}}</span>
-            </div>
-        </div>
-
-        <div class="message-input">
-            <input [{ngModel}]="messageContent" (keyup.enter)="sendMessage()" placeholder="Type a message" />
-            <button (click)="sendMessage()">Send</button>
-        </div>
+    <div class="chat-input">
+      <input [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" placeholder="Type a message..." />
+      <button (click)="sendMessage()">Send</button>
     </div>
+  </div>
 </div>
